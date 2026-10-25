@@ -17,6 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(dplyr)
 library(visdat)
 library(readr)
+library(janitor)
 #library(summarytools)
 ```
 
@@ -29,6 +30,8 @@ shipment  <- readr::read_csv("shipment_Dataset.csv")
 
 head(shipment, 10)
 tail(shipment, 10)
+colnames(shipment)
+clean_names(shipment)
 
 View(shipment)
 ```
@@ -54,17 +57,23 @@ The column names and types: `spec(shipment)`
 
 
 
-
-
 ## Clean dataset
 ```{r echo=FALSE}
 
 visdat::vis_miss(shipment)
 
+sum(is.na(shipment$City))
+
+sum(is.na(shipment$`Customer Name`))
+
+
+
 
 
 
 ```
+1. There are `sum(is.na(shipment$City))` null values in the City column
+2. There are `sum(is.na(shipment$customer_name))` null values in the Customer name column
 
 
 ## Load the shipment dataset into R
