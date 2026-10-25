@@ -18,7 +18,8 @@ library(dplyr)
 library(visdat)
 library(readr)
 library(janitor)
-#library(summarytools)
+library(lubridate)
+
 ```
 
 
@@ -31,7 +32,8 @@ shipment  <- readr::read_csv("shipment_Dataset.csv")
 head(shipment, 10)
 tail(shipment, 10)
 colnames(shipment)
-clean_names(shipment)
+
+shipment <- clean_names(shipment)
 
 View(shipment)
 ```
@@ -64,22 +66,57 @@ visdat::vis_miss(shipment)
 
 sum(is.na(shipment$City))
 
-sum(is.na(shipment$`Customer Name`))
-
-
-
-
-
+sum(is.na(shipment$customer_name))
 
 ```
+Most of the dataset has values. Only less than 1% is not available. These are in the customer name and city columns
 1. There are `sum(is.na(shipment$City))` null values in the City column
 2. There are `sum(is.na(shipment$customer_name))` null values in the Customer name column
 
 
-## Load the shipment dataset into R
+## Analysis
+Access Performance: 
+Understand monthly sales, profit and profitability trends.
+```{r echo=FALSE}
+names(shipment) 
+
+#monthly sales
+  shipment %>% select(order_date,sales) %>%
+  mutate(
+    year = year(order_date),
+    month = month(order_date),
+    month_name = month(order_date, label = TRUE, abbr = FALSE)
+  ) %>% 
+  order_by(desc(year))
+
+
+```
+
+
+## Identify Performance Drivers: Determine which products, sub-categories and regions drive sales and profit.
+
 ```{r echo=FALSE}
 
 
 ```
 
 `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+
+
+
+## Analyze Customers: Identify top customers and compare customer-segment performance.
+
+```{r echo=FALSE}
+
+
+```
+
+
+##Understand Shipping Preferences: Examine customer preferences across different shipping modes.
+```{r}
+
+```
+
+
