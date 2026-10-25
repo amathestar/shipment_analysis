@@ -1,0 +1,76 @@
+---
+title: "shipment_analysis"
+author: "Ama"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Load required libraries
+
+```{r cars}
+
+library(dplyr)
+library(visdat)
+library(readr)
+#library(summarytools)
+```
+
+
+
+## Load the shipment dataset into R
+```{r echo=FALSE}
+
+shipment  <- readr::read_csv("shipment_Dataset.csv")
+
+head(shipment, 10)
+tail(shipment, 10)
+
+View(shipment)
+```
+The shipment data set has `dim(shipment)` rows, columns
+
+
+##Descriptive Analysis
+```{r}
+#Showing the statistics of the shipment dataset
+summary(shipment)
+
+
+#Showing the structure of the shipment dataset
+str(shipment)
+
+#visual display of datatype
+visdat::vis_dat(shipment)
+
+```
+
+Rows: 2508 Columns: 17 
+The column names and types: `spec(shipment)`
+
+
+
+
+
+## Clean dataset
+```{r echo=FALSE}
+
+visdat::vis_miss(shipment)
+
+
+
+
+```
+
+
+## Load the shipment dataset into R
+```{r echo=FALSE}
+
+
+```
+
+`echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
