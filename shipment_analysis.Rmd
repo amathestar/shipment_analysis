@@ -64,14 +64,10 @@ The column names and types: `spec(shipment)`
 
 visdat::vis_miss(shipment)
 
-sum(is.na(shipment$City))
-
 sum(is.na(shipment$customer_name))
 
 ```
-Most of the dataset has values. Only less than 1% is not available. These are in the customer name and city columns
-1. There are `sum(is.na(shipment$City))` null values in the City column
-2. There are `sum(is.na(shipment$customer_name))` null values in the Customer name column
+Most of the data set has values. Only less than 1% is not available. 12  values in the customer_name column. 1. There are `sum(is.na(shipment$customer_name))` null values in the Customer name column
 
 
 ## Analysis
